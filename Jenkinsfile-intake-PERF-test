@@ -43,7 +43,7 @@ node ('preint') {
    stage('Build Docker'){
         sh 'docker-compose build'
 		withDockerRegistry([credentialsId: 'a1315b14-e449-464b-a80a-28d8f55143a9']) {
-			sh "docker tag performancetestintake_bzt cwds/performance_testing:${APP_VERSION}"
+			sh "docker tag performancetestintake_bzt cwds/intake_performance_testing:${APP_VERSION}"
 			sh "docker push cwds/intake_performance_testing:${APP_VERSION}"
 		}
 	 }
