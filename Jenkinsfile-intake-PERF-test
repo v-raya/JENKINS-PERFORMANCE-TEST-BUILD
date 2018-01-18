@@ -70,3 +70,4 @@ node ('preint') {
 	     junit allowEmptyResults: true, testResults: 'reports/TEST-*.xml'
 
 	}
+}
