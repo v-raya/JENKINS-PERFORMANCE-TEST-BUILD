@@ -52,7 +52,7 @@ node ('preint') {
                "AUTH_URL=${AUTH_URL}",
                "DISPLAY=:99"])
                {
-                sh 'docker-compose run Xvfb :99 && bzt jmeter-config.yml -o scenarios.simple.variables.app_url=${APP_URL}'
+                sh 'docker-compose run btz && Xvfb :99 && bzt jmeter-config.yml -o scenarios.simple.variables.app_url=${APP_URL}'
       }
 	  }
             stage ('Reports') {
