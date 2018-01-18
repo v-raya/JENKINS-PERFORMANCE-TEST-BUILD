@@ -50,7 +50,7 @@ node ('preint') {
    stage('Run tests'){
       withEnv(["APP_URL=${APP_URL}",
                "AUTH_URL=${AUTH_URL}",
-               "DISPLAY=:99"
+               "DISPLAY=:99"])
                {
                 sh 'docker-compose run Xvfb :99 && bzt jmeter-config.yml -o scenarios.simple.variables.app_url=${APP_URL}'
       }
