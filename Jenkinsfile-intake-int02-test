@@ -24,7 +24,7 @@ def notifyBuild(String buildStatus, Exception e) {
 
 }
 
-node ('perf') {
+node ('integration02') {
    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')),
               [$class: 'RebuildSettings', autoRebuild: false, rebuildDisabled: false],
 			  parameters([
