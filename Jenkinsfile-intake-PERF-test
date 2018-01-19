@@ -67,7 +67,7 @@ node ('perf') {
 	}
 	finally {
 	     fingerprint 'reports/*'
-
+             notify(failure)
 	     junit allowEmptyResults: true, testResults: 'reports/TEST-*.xml'
 
 	}
