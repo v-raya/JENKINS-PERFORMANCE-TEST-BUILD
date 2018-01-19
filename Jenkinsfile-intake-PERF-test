@@ -46,13 +46,15 @@ node ('perf') {
 			sh "docker tag performancetestintake_bzt cwds/intake_performance_testing:latest"
 		}
 	 }
+   stage " Tagging is done now i need to test"
+
    stage('Run tests bzt'){
       withEnv(["APP_URL=${APP_URL}",
                "AUTH_URL=${AUTH_URL}",
                "DISPLAY=:99"])
                {
                 sh "docker-compose run bzt"
-      }
+                }
 	  }
             stage ('Reports') {
             
