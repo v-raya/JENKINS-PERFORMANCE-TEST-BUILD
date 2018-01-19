@@ -52,7 +52,7 @@ node ('perf') {
                "AUTH_URL=${AUTH_URL}",
                "DISPLAY=:99"])
                {
-                sh 'docker-compose run  bzt'
+                sh "docker-compose run bzt"
       }
 	  }
             stage ('Reports') {
