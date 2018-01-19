@@ -44,7 +44,6 @@ node ('perf') {
         sh 'docker-compose build'
 		withDockerRegistry([credentialsId: 'a1315b14-e449-464b-a80a-28d8f55143a9']) {
 			sh "docker tag performancetestintake_bzt cwds/intake_performance_testing:latest"
-//			sh "docker push cwds/intake_performance_testing:manual-run"
 		}
 	 }
    stage('Run tests bzt'){
