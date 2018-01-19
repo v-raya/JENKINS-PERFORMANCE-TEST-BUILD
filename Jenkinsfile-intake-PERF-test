@@ -52,7 +52,7 @@ node ('preint') {
                "AUTH_URL=${AUTH_URL}",
                "DISPLAY=:99"])
                {
-                sh 'docker-compose run  /opt/scripts/runtests.sh'
+                sh 'docker-compose run  bzt'
       }
 	  }
             stage ('Reports') {
