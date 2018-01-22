@@ -40,6 +40,14 @@ node ('integration') {
 		  cleanWs()
 		  git branch: 'devops', credentialsId: '433ac100-b3c2-4519-b4d6-207c029a103b', url: 'git@github.com:ca-cwds/performance_testing.git'
    }
+stage("upload") {
+        def inputFile = input message: 'Upload file', parameters: [file(name: 'load_test_credentials.csv')]
+        new hudson.FilePath(new File("$workspace/load_test_credentials.csv")).copyFrom(inputFile)
+        inputFile.delete()
+    }
+    stage("checkout") {
+        echo fileExists('load_test_credentials.csv').toString()
+     }
    stage('Build Docker'){
         sh 'docker-compose build'
 //		withDockerRegistry([credentialsId: 'a1315b14-e449-464b-a80a-28d8f55143a9']) {
