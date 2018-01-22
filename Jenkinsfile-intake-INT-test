@@ -42,7 +42,7 @@ node ('integration') {
    }
 stage("upload") {
         def inputFile = input message: 'Upload file', parameters: [file(name: 'test_credentials.csv')]
-//        new hudson.FilePath(new File("${WORKSPACE}/load_test_credentials.csv")).copyFrom(inputFile)
+        new hudson.FilePath(new File("${env.WORKSPACE}/load_test_credentials.csv")).copyFrom(inputFile)
        // inputFile.delete()
     }
     stage("checkout") {
