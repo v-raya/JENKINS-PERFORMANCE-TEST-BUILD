@@ -24,12 +24,12 @@ def notifyBuild(String buildStatus, Exception e) {
 
 }
 
-node ('preint') {
+node ('demo-int') {
    properties([buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '5')),
               [$class: 'RebuildSettings', autoRebuild: false, rebuildDisabled: false],
 			  parameters([
-			  string(defaultValue: 'http://web.preint.cwds.io/perry', description: 'Authentication URL', name: 'AUTH_URL'),
-			  string(defaultValue: 'https://web.preint.cwds.io', description: '', name: 'APP_URL')]),pipelineTriggers([])])
+			  string(defaultValue: 'https://web.demo-int.cwds.io/perry', description: 'Authentication URL', name: 'AUTH_URL'),
+			  string(defaultValue: 'https://web.demo-int.cwds.io', description: '', name: 'APP_URL')]),pipelineTriggers([])])
 
    def errorcode = null;
    def buildInfo = '';
@@ -42,10 +42,10 @@ node ('preint') {
    }
    stage('Build Docker'){
         sh 'docker-compose build'
-		withDockerRegistry([credentialsId: 'a1315b14-e449-464b-a80a-28d8f55143a9']) {
-			sh "docker tag performancetestintake_bzt cwds/intake_performance_testing:latest"
+//		withDockerRegistry([credentialsId: 'a1315b14-e449-464b-a80a-28d8f55143a9']) {
+//			sh "docker tag performancetestintake_bzt cwds/intake_performance_testing:latest"
 //			sh "docker push cwds/intake_performance_testing:${APP_VERSION}"
-		}
+//		}
 	 }
    stage('Run tests bzt'){
       withEnv(["APP_URL=${APP_URL}",
