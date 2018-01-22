@@ -44,7 +44,7 @@ stage("upload") {
         def inputFile = input message: 'Upload file', parameters: [file(name: 'load_test_credentials.csv')]
 //        new hudson.FilePath(new File("${WORKSPACE}/Performance-tests/INTEGRATION-performance-test-intake/load_test_credentials.csv")).copyFrom(inputFile)
        // inputFile.delete()
-   sh 'cp $(pwd)/load_test_credentials.csv $(pwd)/Performance-tests/INTEGRATION-performance-test-intake/load_test_credentials.csv 
+     sh 'cp $(pwd)/load_test_credentials.csv $(pwd)/Performance-tests/INTEGRATION-performance-test-intake/load_test_credentials.csv'
    }
     stage("checkout") {
         echo fileExists('load_test_credentials.csv').toString()
