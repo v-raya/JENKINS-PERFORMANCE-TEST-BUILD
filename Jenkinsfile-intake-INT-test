@@ -41,8 +41,8 @@ node ('integration') {
 		  git branch: 'devops', credentialsId: '433ac100-b3c2-4519-b4d6-207c029a103b', url: 'git@github.com:ca-cwds/performance_testing.git'
    }
 stage("upload") {
-        def inputFile = input message: 'Upload file', parameters: [file(name: 'test_credentials.csv')]
-        new hudson.FilePath(new File("${env.WORKSPACE}/load_test_credentials.csv")).copyFrom(inputFile)
+        def inputFile = input message: 'Upload file', parameters: [file(name: 'load_test_credentials.csv')]
+      //  new hudson.FilePath(new File("${env.WORKSPACE}/load_test_credentials.csv")).copyFrom(inputFile)
        // inputFile.delete()
     }
     stage("checkout") {
