@@ -42,7 +42,7 @@ node ('integration') {
    }
 stage("upload") {
         def inputFile = input message: 'Upload file', parameters: [file(name: 'load_test_credentials.csv')]
-       sh 'echo $inputFile' 
+       sh 'cat ${inputFile}' 
        new hudson.FilePath(new File("${WORKSPACE}/load_test_credentials.csv")).copyFrom(inputFile)
        // inputFile.delete()
 //     sh 'cp $(pwd)/load_test_credentials.csv $(pwd)/Performance-tests/INTEGRATION-performance-test-intake/load_test_credentials.csv'
