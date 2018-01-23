@@ -40,13 +40,7 @@ node ('perf') {
 		  cleanWs()
 		  git branch: 'devops', credentialsId: '433ac100-b3c2-4519-b4d6-207c029a103b', url: 'git@github.com:ca-cwds/performance_testing.git'
    }
-   stage('Build Docker'){
-        sh 'docker-compose build'
-//		withDockerRegistry([credentialsId: 'a1315b14-e449-464b-a80a-28d8f55143a9']) {
-//			sh 'docker tag performancetestintake_bzt cwds/intake_performance_testing:manual-run'
-//	                sh "docker push cwds/intake_performance_testing:manual-run"	
-//              }
-	 }
+
 stage("upload") {
        // def inputFile = input message: 'Upload file', parameters: [file(name: 'load_test_credentials.csv')]
        sh 'cp /opt/jenkins/workspace/load_test_credentials.csv ${WORKSPACE}/load_test_credentials.csv'
@@ -57,7 +51,15 @@ stage("upload") {
    }
     stage("checkout") {
         echo fileExists('load_test_credentials.csv').toString()
-     }
+     }  
+
+ stage('Build Docker'){
+        sh 'docker-compose build'
+//		withDockerRegistry([credentialsId: 'a1315b14-e449-464b-a80a-28d8f55143a9']) {
+//			sh 'docker tag performancetestintake_bzt cwds/intake_performance_testing:manual-run'
+//	                sh "docker push cwds/intake_performance_testing:manual-run"	
+//              }
+	 }
 
 
    stage('Run tests bzt'){
