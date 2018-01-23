@@ -47,7 +47,18 @@ node ('perf') {
 //	                sh "docker push cwds/intake_performance_testing:manual-run"	
 //              }
 	 }
-   stage " Tagging is done now i need to test"
+stage("upload") {
+       // def inputFile = input message: 'Upload file', parameters: [file(name: 'load_test_credentials.csv')]
+       sh 'cp /opt/jenkins/workspace/load_test_credentials.csv ${WORKSPACE}/load_test_credentials.csv'
+       // new hudson.FilePath(new File("${WORKSPACE}/load_test_credentials.csv")).copyFrom(inputFile)
+       // inputFile.delete()
+//     sh 'cp $(pwd)/load_test_credentials.csv $(pwd)/Performance-tests/INTEGRATION-performance-test-intake/load_test_credentials.csv'
+  sh ' ls -la  ${pwd};echo ${WORKSPACE} ; ls -l ${WORKSPACE}'
+   }
+    stage("checkout") {
+        echo fileExists('load_test_credentials.csv').toString()
+     }
+
 
    stage('Run tests bzt'){
       withEnv(["APP_URL=${APP_URL}",
